@@ -1,3 +1,7 @@
+#### Esse branch é a minha versão pessoal do projeto. Para acessar uma versão antiga do projeto, e desenvolver junto com o instrutor, tive que criar um branch para iniciar um fork de um commit específico do projeto original. Esse branch contém algumas partes que diferem um pouco do projeto original, por questão de ajuste ao ambiente de desenvolvimento pessoal. 
+
+#### Agradeço ao Téo Calvo por disponibilizar esse conteúdo.
+
 # olist-ml-models
 
 <img src="https://github.com/TeoMeWhy/olist-ml-models/blob/main/img/photo_2023-03-19_21-01-54.jpg?raw=true" width=450>
