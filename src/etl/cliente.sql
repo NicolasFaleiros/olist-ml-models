@@ -56,6 +56,6 @@ tb_group AS (
 )
 
 SELECT
-    '2018-01-01' as dtReference,
+    '2018-01-01' AS dtReference,
     *
 FROM tb_group;
