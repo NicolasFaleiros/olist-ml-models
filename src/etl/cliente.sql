@@ -22,7 +22,7 @@ WITH tb_join AS (
 tb_group AS (
         SELECT 
         idVendedor,
-        COUNT(DISTINCT descUF) as qtdeUFsPedidos,
+        COUNT(DISTINCT descUF) AS qtdeUFsPedidos,
         CAST(COUNT(DISTINCT CASE WHEN descUF = 'AC' THEN idPedido END) AS FLOAT) / COUNT(DISTINCT idPedido) as pctPedidoAC,
         CAST(COUNT(DISTINCT CASE WHEN descUF = 'AL' THEN idPedido END) AS FLOAT) / COUNT(DISTINCT idPedido) as pctPedidoAL,
         CAST(COUNT(DISTINCT CASE WHEN descUF = 'AM' THEN idPedido END) AS FLOAT) / COUNT(DISTINCT idPedido) as pctPedidoAM,
