@@ -145,5 +145,5 @@ SELECT
     t2.minQtdeParcelas
 FROM tb_summary AS t1
 
-LEFT JOIN tb_cartao AS t2
+LEFT JOIN tb_cartao as t2
 ON t1.idVendedor = t2.idVendedor;
