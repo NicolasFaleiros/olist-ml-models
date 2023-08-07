@@ -28,7 +28,7 @@ WITH tb_pedido AS (
 )
 
 SELECT
-    '2018-01-01' AS dtReference,
+    '2018-01-01' as dtReference,
     idVendedor,
     CAST(COUNT(DISTINCT CASE WHEN DATE(COALESCE(dtEntregue, '2018-01-01')) > DATE(dtEstimativaEntrega) THEN idPedido END) AS FLOAT) / COUNT(DISTINCT CASE WHEN descSituacao = 'delivered' THEN idPedido END) AS pctPedidoAtraso,
     CAST(COUNT(DISTINCT CASE WHEN descSituacao = 'canceled' THEN idPedido END) AS FLOAT) / COUNT(DISTINCT idPedido) as pctPedidoCancelado,
