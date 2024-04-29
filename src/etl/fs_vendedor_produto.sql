@@ -13,8 +13,8 @@ WITH tb_join AS (
     LEFT JOIN produto AS t3
     ON t2.idProduto = t3.idProduto
 
-    WHERE t1.dtPedido < '2018-01-01'
-    AND t1.dtPedido >= DATE('2018-01-01','-6 MONTH')
+    WHERE t1.dtPedido < '{date}'
+    AND t1.dtPedido >= DATE('{date}','-6 MONTH')
     AND idVendedor IS NOT NULL
 ),
 
@@ -46,23 +46,8 @@ tb_summary AS (
 )
 
 SELECT
-    '2018-01-01' as dtReference,
+    '{date}' as dtReference,
+    DATE('now') as dtIngestion,
     *
 
 FROM tb_summary;
-
--- Uma query auxiliar para obter o top 15 de categorias de produtos mais vendidos
-SELECT
-    descCategoria
-
-FROM item_pedido AS t2
-
-LEFT JOIN produto AS t3
-ON t2.idProduto = t3.idProduto
-
-WHERE t2.idVendedor IS NOT NULL
-
-GROUP BY 1
-ORDER BY COUNT(DISTINCT idPedido) DESC
-
-LIMIT 15;

@@ -1,3 +1,4 @@
+-- Active: 1714187815517@@127.0.0.1@3306
 WITH tb_pedido_item As(
     SELECT 
         t2.*,
@@ -8,8 +9,8 @@ WITH tb_pedido_item As(
     LEFT JOIN item_pedido AS t2
     ON t1.idPedido = t2.idPedido
 
-    WHERE t1.dtPedido < '2018-01-01'
-    AND t1.dtPedido >= DATE('2018-01-01','-6 MONTH')
+    WHERE t1.dtPedido < '{date}'
+    AND t1.dtPedido >= DATE('{date}','-6 MONTH')
     AND t2.idVendedor IS NOT NULL
 ),
 
@@ -19,7 +20,7 @@ tb_summary AS (
         COUNT(DISTINCT idPedido) AS qtdePedidos,
         COUNT(DISTINCT DATE(dtPedido)) AS qtdeDias,
         COUNT(idProduto) AS qtdeItens,
-        MIN(julianday('2018-01-01') - julianday(dtPedido)) AS qtdeRecencia,
+        MIN(julianday('{date}') - julianday(dtPedido)) AS qtdeRecencia,
         SUM(vlPreco) / COUNT(DISTINCT idPedido) AS avgTicket,
         AVG(vlPreco) AS avgValorProduto,
         MAX(vlPreco) AS maxValorProduto,
@@ -58,14 +59,14 @@ tb_life AS (
     SELECT 
         t2.idVendedor,
         SUM(vlPreco) AS LTV,
-        MAX(julianday('2018-01-01') - julianday(DATE(dtPedido))) AS qtdeDiasBase
+        MAX(julianday('{date}') - julianday(DATE(dtPedido))) AS qtdeDiasBase
 
     FROM pedido AS t1
 
     LEFT JOIN item_pedido AS t2
     ON t1.idPedido = t2.idPedido
 
-    WHERE t1.dtPedido < '2018-01-01'
+    WHERE t1.dtPedido < '{date}'
     AND t2.idVendedor IS NOT NULL
 
     GROUP BY 1
@@ -100,7 +101,7 @@ tb_intervalo AS (
 )
 
 SELECT
-    '2018-01-01' AS dtReference,
+    '{date}' AS dtReference,
     t1.*,
     t2.minVlPedido,
     t2.maxVlPedido,

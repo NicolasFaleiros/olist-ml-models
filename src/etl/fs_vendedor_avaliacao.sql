@@ -9,8 +9,8 @@ WITH tb_pedido AS (
     LEFT JOIN item_pedido AS t2
     ON t1.idPedido = t2.idPedido
 
-    WHERE t1.dtPedido < '2018-01-01'
-    AND t1.dtPedido >= DATE('2018-01-01','-6 MONTH')
+    WHERE t1.dtPedido < '{date}'
+    AND t1.dtPedido >= DATE('{date}','-6 MONTH')
     AND idVendedor IS NOT NULL
 ),
 
@@ -30,7 +30,8 @@ tb_summary AS (
         idVendedor,
         AVG(vlNota) as avgNota,
         MAX(vlNota) as maxNota,
-        MIN(vlNota) as minNota
+        MIN(vlNota) as minNota,
+        COUNT(vlNota) / COUNT(idPedido) as pctAvaliacao
 
     FROM tb_join
 
@@ -38,7 +39,8 @@ tb_summary AS (
 )
 
 SELECT
-    '2018-01-01' AS dtReference,
+    '{date}' AS dtReference,
+    DATE('now') AS dtIngestion,
     *
 
 FROM tb_summary;
